@@ -1,71 +1,58 @@
-<!--  -->
-import { error } from 'util';
 <template>
   <div>
-    {{title}}
-    <button @click="send()" class="aa">aaa</button>
-    <button @click="buttonyear()">bbb</button>
-    <router-link to="/">wq</router-link>
-    <button v-for="list in dock" :key='list'>{{list}}~{{1}}</button>
-    <router-view></router-view>
+    <headertitle title="我的"></headertitle>
+    <div class="cent">
+      <img :src="this.imagea">
+      <span class="center">历史订单</span>
+      <span class="right"><router-link to="/order">>></router-link></span>
+      <hr>
+      <img :src="this.imageb">
+      <span></span>
+      <span class="right">取消绑定</span>
+      <hr>
+      <img :src="this.imagec">
+      <span class="center">联系我们</span>
+      <hr>
+    </div>
+    <foot class="fot"></foot>
   </div>
 </template>
 
 <script>
-// import api from './api/api.js'
+import headertitle from '../compents/header.vue'
+import foot from '../compents/footer.vue'
+import a from '../../img/6.png'
+import b from '../../img/7.png'
+import c from '../../img/8.png'
 
 export default {
-
   data () {
     return {
-      title: 'Home',
-      lists: [
-        { a: 0, },
-        { b: 1, }
-      ],
-      dock: [],
-      year: 2017,
+      imagea: a,
+      imageb: b,
+      imagec: c
     }
   },
-
-  methods: {
-    send () {
-      this.$axios.get('https://api.apiopen.top/EmailSearch?number=1012002').then(resp => {
-        this.dock = resp.data.result.data
-      }).catch(resp => {
-        console.log('loss')
-      })
-    },
-    buttonyear () {
-      this.lists.a = this.year
-      console.log(this.lists.a)
-    },
-    adddata () {
-      this.dock.push('a')
-      console.log(this.dock)
-    }
-  },
-  // 只在页面加载是执行一次
-  created: function () {
-    this.buttonyear()
-    // api.GetData(data).then(res => {
-    //   console.log('请求成功')
-    // })
-  },
-  // 每次代码发生变化都会执行一次
-  mounted: function () {
-    this.adddata()
-    this.buttonyear()
+  components: {
+    foot,
+    headertitle
   }
 }
 </script>
 
-<style lang="stylus" scope="this api replaced by slot-scope in 2.5.0+">
-  .aa{
-    color : red;
-    border-radius : 10%;
-    position :relative;
-    margin-left :100px;
-    margin-top :100px;
-    }
+<style>
+.fot {
+  margin-left: 5%;
+  margin-top:16.5em;
+}
+.cent {
+  margin-top: 1em;
+}
+.right {
+  float: right;
+  margin-right: 0.5em;
+}
+.center {
+  margin-left:3em;
+}
 </style>

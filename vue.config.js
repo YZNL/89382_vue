@@ -6,6 +6,15 @@ module.exports = {
     overlay: {
       warnings: true,
       errors: true
-    }
+    },
+    // proxy: {
+    //   '/': {
+    //     target: 'http://39.108.152.84:8080/repair_war/report',
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/api': ''
+    //     }
+    //   }
+    // }
   }
 }
